@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/customers")
+@RequestMapping(value = "customers")
 public class CustomerController {
 
   private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
@@ -33,7 +33,7 @@ public class CustomerController {
   }
 
   @GetMapping
-  @RequestMapping("{id}")
+  @RequestMapping(value ="{id}")
   public Optional<Customer> getCustomerById(@PathVariable String id) {
     logger.info("retrieve customer by ID: " + id);
     return customerRepository.findById(id);
