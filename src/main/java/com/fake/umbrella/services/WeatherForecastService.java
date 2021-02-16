@@ -5,16 +5,18 @@ import com.fake.umbrella.models.CustomerForecast;
 import com.fake.umbrella.models.WeatherForecast.Weather;
 import com.fake.umbrella.models.WeatherForecast.WeatherForecast;
 import com.fake.umbrella.repositories.CustomerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
+@Service
 public class WeatherForecastService {
-
-  private static final Logger logger = LoggerFactory.getLogger(WeatherForecastService.class);
 
   @Autowired
   private OpenWeatherService openWeatherService;
@@ -40,7 +42,7 @@ public class WeatherForecastService {
       String cityName = locationArray[0];
       String countryCode = locationArray[1];
 
-      logger.info("try to retrieve weather forecast for " + cityName + "," + countryCode);
+      log.info("try to retrieve weather forecast for " + cityName + "," + countryCode);
       WeatherForecast weatherForecast = openWeatherService.getWeatherForecastByCityNameAndCountryCode(cityName, countryCode);
 
       List<String> rainyDays = getRainyDays(weatherForecast);
